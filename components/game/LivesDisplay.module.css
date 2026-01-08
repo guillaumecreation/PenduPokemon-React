@@ -1,0 +1,199 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(8px, 1.5vh, 12px);
+  padding: clamp(12px, 2vh, 16px);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: clamp(12px, 2vw, 16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.livesTitle {
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.livesGrid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(4px, 0.8vw, 8px);
+  flex-wrap: wrap;
+}
+
+.lifeIcon {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.lifeIcon:hover:not(.losing) {
+  transform: scale(1.1);
+}
+
+.lifeIcon.active {
+  opacity: 1;
+}
+
+.lifeIcon.inactive {
+  opacity: 0.15;
+}
+
+.lifeWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.lifeImage {
+  height: clamp(28px, 3.5vw, 40px);
+  width: clamp(28px, 3.5vw, 40px);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  transition: all 0.3s ease;
+}
+
+.lifeIcon.active .lifeImage {
+  animation: lifePulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.lifeIcon.inactive .lifeImage {
+  animation: none;
+  filter: grayscale(100%) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.lifeIcon.losing {
+  animation: lifeShake 0.5s ease-out;
+}
+
+.lifeIcon.losing .lifeImage {
+  animation: lifeExplode 0.5s ease-out;
+  filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.8));
+}
+
+.particles {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: #fbbf24;
+  border-radius: 50%;
+  animation: particleExplode 1s ease-out forwards;
+}
+
+.particle:nth-child(1) { animation-delay: 0s; transform: translate(-50%, -50%) rotate(0deg); }
+.particle:nth-child(2) { animation-delay: 0.1s; transform: translate(-50%, -50%) rotate(45deg); }
+.particle:nth-child(3) { animation-delay: 0.15s; transform: translate(-50%, -50%) rotate(90deg); }
+.particle:nth-child(4) { animation-delay: 0.2s; transform: translate(-50%, -50%) rotate(135deg); }
+.particle:nth-child(5) { animation-delay: 0.1s; transform: translate(-50%, -50%) rotate(180deg); }
+.particle:nth-child(6) { animation-delay: 0.15s; transform: translate(-50%, -50%) rotate(225deg); }
+.particle:nth-child(7) { animation-delay: 0.2s; transform: translate(-50%, -50%) rotate(270deg); }
+.particle:nth-child(8) { animation-delay: 0.1s; transform: translate(-50%, -50%) rotate(315deg); }
+
+.lifeLost {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  animation: lifeLostPop 1s ease-out forwards;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes lifePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes lifeShake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px) rotate(-2deg); }
+  20%, 40%, 60%, 80% { transform: translateX(5px) rotate(2deg); }
+}
+
+@keyframes lifeExplode {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3) rotate(180deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes particleExplode {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateX(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateX(40px) scale(0);
+  }
+}
+
+@keyframes lifeLostPop {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -80px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -120px) scale(0.8);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: clamp(10px, 1.5vh, 12px);
+  }
+
+  .livesGrid {
+    gap: clamp(4px, 0.8vw, 6px);
+  }
+
+  .lifeImage {
+    height: clamp(25px, 4vw, 35px);
+    width: clamp(25px, 4vw, 35px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .lifeImage {
+    height: clamp(22px, 3.5vw, 30px);
+    width: clamp(22px, 3.5vw, 30px);
+  }
+}
+

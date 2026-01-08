@@ -1,0 +1,142 @@
+.container {
+  width: 100%;
+  padding: clamp(12px, 2vh, 16px);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: clamp(12px, 2vw, 16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.5vh, 12px);
+}
+
+.levelInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(8px, 1.5vh, 12px);
+}
+
+.levelBadge {
+  padding: clamp(10px, 1.5vh, 12px) clamp(16px, 2vw, 20px);
+  border-radius: clamp(10px, 1.5vw, 12px);
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
+.levelNumber {
+  display: block;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: clamp(2px, 0.5vh, 4px);
+  line-height: 1.2;
+}
+
+.levelName {
+  display: block;
+  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(8px, 1.5vh, 12px);
+  width: 100%;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(2px, 0.5vh, 4px);
+}
+
+.statLabel {
+  font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+}
+
+.statValue {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+}
+
+.progressBar {
+  margin-top: clamp(8px, 1vh, 12px);
+}
+
+.progressLabel {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: clamp(6px, 1vh, 8px);
+  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+}
+
+.progressTrack {
+  width: 100%;
+  height: clamp(10px, 1.5vh, 12px);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: clamp(5px, 0.8vw, 6px);
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: clamp(5px, 0.8vw, 6px);
+  transition: width 0.5s ease;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.progressXP {
+  text-align: center;
+  margin-top: clamp(6px, 1vh, 8px);
+  font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: clamp(10px, 1.5vh, 12px);
+    gap: clamp(8px, 1vh, 10px);
+  }
+
+  .levelInfo {
+    gap: clamp(6px, 1vh, 8px);
+  }
+
+  .levelBadge {
+    padding: clamp(8px, 1.2vh, 10px) clamp(12px, 2vw, 16px);
+  }
+
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(6px, 1vh, 8px);
+  }
+
+  .progressBar {
+    margin-top: clamp(6px, 1vh, 8px);
+  }
+}
+
